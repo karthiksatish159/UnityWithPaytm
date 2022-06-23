@@ -8,7 +8,14 @@ public class WebViewTest : MonoBehaviour
     // FullScreen
 public void ShowUrlFullScreen(string url)
 {
-    GpmWebView.ShowUrl(
+	if(Application.platform==RuntimePlatform.WindowsPlayer||Application.platform==RuntimePlatform.WindowsEditor)
+			{
+				Debug.Log("windows");
+				Application.OpenURL(url);
+			}
+	else
+	{
+    		GpmWebView.ShowUrl(
         url,
         new GpmWebViewRequest.Configuration()
         {
@@ -17,7 +24,7 @@ public void ShowUrlFullScreen(string url)
             isClearCache = true,
             isNavigationBarVisible = true,
             navigationBarColor = "#4B96E6",
-            title = "The page title.",
+            title = "The page title",
             isBackButtonVisible = true,
             isForwardButtonVisible = true,
             supportMultipleWindows = true,
@@ -30,6 +37,7 @@ public void ShowUrlFullScreen(string url)
         {
             "USER_ CUSTOM_SCHEME"
         });
+}
 }
 
 // Popup default
